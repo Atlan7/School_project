@@ -2,18 +2,10 @@ from django.db import models
 
 from datetime import datetime
 
-from slugify import slugify as slugify_ru
-
 
 class Theme(models.Model):
     """ Тема из физики """
     name = models.CharField(max_length=225)
-    slug = models.SlugField('Slug for theme', unique=True, max_length=300)
-
-    def save(self,*args, **kwargs):
-        if not self.slug:
-            slug = slugify_ru(self.name)
-        return super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.name}'
@@ -61,7 +53,7 @@ class Author(models.Model):
 
     def __str__(self):
         return f'{self.first_name} {self.second_name}'
-#
+
 #    def get_age(self):
 #        return datetime.today().year - self.date_of_birth.year
 
