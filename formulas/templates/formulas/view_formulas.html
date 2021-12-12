@@ -18,12 +18,16 @@
                       </button>
                     </h2>
                     <div id="flush-collapse_{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="flush-heading_{{ forloop.counter }}" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body"> {{ formula.description }} </div>
+                        <div class="accordion-body"> 
+                            <strong>Размерность:  {{ formula.dimension }} <br>
+                            Пометки:  {{ formula.description }} </strong> 
+                        </div>
                     </div>
                   </div>
-                <br>
                 {% endfor %}
             </div>
         </div>
     </div>
+    <br>
+    <br>
 {% endblock %}
