@@ -3,6 +3,7 @@ from django.db import models
 from datetime import datetime
 
 
+
 class Theme(models.Model):
     """ Тема из физики """
     name = models.CharField(max_length=225)
@@ -16,25 +17,37 @@ class Theme(models.Model):
 
 
 class Formula(models.Model):
-    """ Формула """     
+    """ Формула """
+
 
     # Размерность 
     OPTIONS = [
-        ('Вт', 'Ватты'),
-        ('Дж', 'Джоули'),
-        ('Кл', 'Кулоны'),
-        ('Па', 'Паскали'),
-        ('H', 'Ньютоны'),
-        ('Ф', 'Фараты'),
-        ('К', 'Кельвины'),
+        ('Вт, (Ватт)', 'Вт, (Ватт)'),
+        ('Ом', 'Омы'),
+        ('В, (Вольт)', 'В, (Вольт)'),
+        ('Гц, (Герц)', 'Гц, (Герц)'),
+        ('Дж, (Джоуль)', 'Дж, (Джоуль)'),
+        ('Кл, (Кулоны)', 'Кл, (Кулоны)'),
+        ('Па, (Паскаль)', 'Па, (Паскаль)'),
+        ('H, (Ньютон)', 'H, (Ньютон)'),
+        ('Ф, (Фарат)', 'Ф, (Фарат)'),
+        ('К, (Кельвин)', 'К, (Кельвин)'),
+        ('%', 'Проценты'),
+        ('Сек', 'Cекунды'),
+        ('м/c', 'Метры в секунду'),
+        ('км/ч', 'Километры в час'),
+        ('Дптр, (Диоптри) ', 'Дптр, (Диоптри) '),
+        ('м^3', 'Метры кубические'),
+        ('м^2', 'Метры квадратные'),
+        ('°, (Градусы)', '°, (Градусы)'),
+        ('°C, (Градусы Цельсия)', 'Градусы'),
     ]
 
     theme = models.ForeignKey(Theme, on_delete=models.CASCADE)
     name = models.CharField(max_length=225)
     description = models.TextField()
-    dimension = models.CharField(OPTIONS, max_length=2)
-    author = models.ForeignKey('Author', on_delete=models.CASCADE)
-    formula_img = models.ImageField(upload_to=f'formulas/author_{author.name}/')
+    dimension = models.CharField(OPTIONS, max_length=20)
+    formula_img = models.ImageField(upload_to='formulas/')
 
     def __str__(self):
         return f'{self.theme} - {self.name}'
@@ -42,21 +55,3 @@ class Formula(models.Model):
     class Meta:
         verbose_name = 'Формула'
         verbose_name_plural = 'Формулы'
-
-
-class Author(models.Model):
-    """ Автор формулы/закона/теории """
-    first_name = models.CharField(max_length=225)
-    second_name = models.CharField(max_length=225)
-    date_of_birth = models.DateField(blank=True, null=True)
-    bio = models.TextField(blank=True, null=True)
-
-    def __str__(self):
-        return f'{self.first_name} {self.second_name}'
-
-#    def get_age(self):
-#        return datetime.today().year - self.date_of_birth.year
-
-    class Meta:
-        verbose_name = 'Автор'
-        verbose_name_plural = 'Авторы'
