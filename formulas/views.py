@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 
-from .models import Theme, Formula, Author
+from .models import Theme, Formula
 
 
 class ViewThemes(ListView):
