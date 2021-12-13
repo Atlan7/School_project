@@ -18,4 +18,4 @@ class ViewFormulasAboutTheme(ListView):
     context_object_name = 'formulas'
 
     def queryset(self):
-        return Formula.objects.filter(theme_id=self.kwargs['theme_pk'])
+        return Formula.objects.filter(theme_id=self.kwargs['theme_pk']).order_by('position')
