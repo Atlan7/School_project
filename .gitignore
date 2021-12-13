@@ -16,4 +16,5 @@ __pycache__/
 
 src/settings/local.py
 *media
+*quiz
 

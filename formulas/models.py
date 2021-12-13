@@ -44,6 +44,7 @@ class Formula(models.Model):
     ]
 
     theme = models.ForeignKey(Theme, on_delete=models.CASCADE)
+    position = models.PositiveSmallIntegerField()
     name = models.CharField(max_length=225)
     description = models.TextField()
     dimension = models.CharField(OPTIONS, max_length=20)
