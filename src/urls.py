@@ -1,5 +1,4 @@
 """src URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
 Examples:
@@ -24,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', About.as_view(), name='about'),
     path('formulas/', include(('formulas.urls', 'formulas'), namespace='formulas')),
+    path('quizes/', include(('quizes.urls', 'quizes'), namespace='quizes')),
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 ]
 
